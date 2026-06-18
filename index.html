@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UFC Event WarRoom</title>
+  <style>
+    :root{--bg:#020202;--panel:#1B1B1A;--panel2:#23231f;--line:#37362f;--text:#F4F1EA;--muted:#b8afa1;--green:#2E9E5D;--red:#b64a53;--amber:#DDBA5A;--blue:#102A43;font-family:Bahnschrift,"Segoe UI",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}.app{width:min(1440px,calc(100% - 28px));margin:0 auto;padding:18px 0 36px}.top{display:grid;grid-template-columns:minmax(280px,1fr) minmax(360px,auto);gap:18px;align-items:start;margin-bottom:18px}.eventTitleText{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Segoe UI",sans-serif;font-size:40px;line-height:.95;margin:0;color:var(--amber);letter-spacing:0}.topRight{display:grid;gap:10px;justify-items:end}.topControls{display:flex;gap:8px;justify-content:flex-end}.iconAction,.cardAction,.filterControl,.sortButton{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;font-weight:800}.iconAction{width:58px;height:50px;display:inline-grid;place-items:center;padding:0}.iconAction.primary{background:rgba(221,186,90,.16);border-color:rgba(221,186,90,.72);color:var(--amber)}.iconAction:hover,.cardAction:hover,.filterControl:hover,.sortButton:hover{border-color:rgba(221,186,90,.78);color:var(--amber)}.iconAction svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}.filterPanel{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.filterGroup{display:grid;gap:4px}.filterGroup label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}.filterControl{height:42px;min-width:118px;background:#11110f;padding:0 34px 0 12px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#F4F1EA 50%),linear-gradient(135deg,#F4F1EA 50%,transparent 50%);background-position:calc(100% - 17px) 18px,calc(100% - 11px) 18px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}.sortGroup{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#11110f;align-self:end}.sortButton{height:42px;border:0;border-right:1px solid var(--line);border-radius:0;background:transparent;color:var(--muted);padding:0 12px}.sortButton:last-child{border-right:0}.sortButton.active{background:rgba(221,186,90,.15);color:var(--amber)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.card{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));border-radius:8px;padding:14px;min-height:206px;display:grid;grid-template-rows:auto 1fr auto;gap:12px}.card.current{border-color:rgba(221,186,90,.78);box-shadow:inset 3px 0 0 var(--amber)}.cardHeader{display:flex;justify-content:space-between;gap:12px;align-items:start}.card h2{font-size:25px;line-height:1;margin:0;color:var(--text);letter-spacing:0}.card.current h2{color:var(--amber)}.eventHeadline{display:block;color:var(--muted);font-size:16px;margin-top:5px}.badge{border:1px solid var(--line);border-radius:999px;color:var(--muted);padding:4px 8px;font-size:12px;font-weight:800;white-space:nowrap}.badge.current{border-color:rgba(221,186,90,.65);color:var(--amber)}.meta{display:grid;gap:7px;color:var(--muted);font-size:14px;line-height:1.2}.meta strong{color:var(--text);font-weight:800}.actions{display:flex;flex-wrap:wrap;gap:8px}.cardAction{display:inline-flex;text-decoration:none;align-items:center;justify-content:center;min-height:38px;padding:9px 13px}.empty{border:1px dashed var(--line);border-radius:8px;padding:28px;text-align:center;color:var(--muted);grid-column:1/-1}.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}.modal.open{display:flex}.dialog{width:min(560px,100%);background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 20px 70px rgba(0,0,0,.5)}.dialogHead{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}.dialogHead h2{font-size:22px;margin:0;color:var(--amber)}.dialogBody{padding:16px;display:grid;gap:12px}.field{display:grid;gap:6px}.field label{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800}.field input{border:1px solid var(--line);background:#11110f;color:var(--text);border-radius:8px;padding:11px 12px}.dialogActions{display:flex;justify-content:flex-end;gap:8px;padding:0 16px 16px}.closeIcon{position:relative;display:inline-grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);background:#11110f;color:var(--muted);border-radius:8px;padding:0}.closeIcon::before,.closeIcon::after{content:"";position:absolute;width:16px;height:2px;border-radius:999px;background:currentColor}.closeIcon::before{transform:rotate(45deg)}.closeIcon::after{transform:rotate(-45deg)}.closeIcon:hover{border-color:rgba(221,186,90,.36);background:rgba(221,186,90,.06);color:rgba(221,186,90,.78)}.status{min-height:18px;color:var(--muted);font-size:13px}@media(max-width:840px){.top{grid-template-columns:1fr}.topRight{justify-items:start}.filterPanel{justify-content:flex-start}.eventTitleText{font-size:34px}}@media(max-width:560px){.filterPanel{display:grid;grid-template-columns:1fr 1fr;width:100%}.filterControl,.sortGroup{width:100%;min-width:0}.sortGroup{grid-column:1/-1}.sortButton{flex:1}.iconAction{width:50px}.dialogActions{justify-content:stretch}.dialogActions .cardAction{flex:1}}
+  </style>
+  <style>
+    .top{grid-template-columns:minmax(320px,1fr) auto;align-items:center}
+    .topRight{display:flex;align-items:end;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+    .filterPanel{align-items:end;flex-wrap:nowrap}
+    .topControls .iconAction{width:42px;height:42px}
+    .topControls .iconAction svg{width:21px;height:21px}
+    .iconAction[hidden]{display:none}
+    .adminSwitch{position:relative;width:78px;height:42px;border:1px solid var(--line);border-radius:999px;background:#11110f;color:var(--muted);padding:0;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;transition:border-color .16s ease,background .16s ease,color .16s ease}
+    .adminSwitch:hover{border-color:rgba(221,186,90,.72);color:var(--amber)}
+    .adminSwitch[aria-checked="true"]{border-color:rgba(46,158,93,.82);background:rgba(46,158,93,.2);color:#d9ffe7}
+    .adminSwitch .adminKnob{position:absolute;left:4px;top:4px;width:32px;height:32px;border-radius:999px;background:#2a2a26;border:1px solid rgba(244,241,234,.12);box-shadow:0 8px 18px rgba(0,0,0,.34);transition:transform .18s ease,background .18s ease,border-color .18s ease}
+    .adminSwitch[aria-checked="true"] .adminKnob{transform:translateX(36px);background:var(--green);border-color:var(--green)}
+    .adminSwitch svg{position:relative;z-index:1;width:17px;height:17px;justify-self:center;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    body:not(.admin-mode) #newRoom,body:not(.admin-mode) .eventCheck{display:none!important}
+    .cardLink{color:inherit;text-decoration:none;position:relative;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease,transform .16s ease}
+    .cardLink:hover,.cardLink:focus-visible{border-color:rgba(221,186,90,.86);background:linear-gradient(180deg,rgba(221,186,90,.12),var(--panel));box-shadow:inset 3px 0 0 var(--amber),0 12px 28px rgba(0,0,0,.28);outline:0;transform:translateY(-1px)}
+    .cardLink:hover h2,.cardLink:focus-visible h2{color:var(--amber)}
+    .card.selected{border-color:rgba(182,74,83,.9);box-shadow:inset 3px 0 0 var(--red),0 12px 28px rgba(0,0,0,.28)}
+    .cardTitleRow{display:flex;gap:10px;align-items:flex-start}
+    .eventCheck{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:0 0 auto;border-radius:8px;cursor:pointer}
+    .eventCheck input{position:absolute;opacity:0;pointer-events:none}
+    .eventCheckBox{width:24px;height:24px;border:1px solid rgba(221,186,90,.42);border-radius:7px;background:#11110f;display:inline-grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+    .eventCheckBox:after{content:"";width:10px;height:6px;border-left:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(-45deg) scale(.75);opacity:0;transition:opacity .12s ease,transform .12s ease}
+    .eventCheck input:focus-visible + .eventCheckBox{outline:2px solid rgba(221,186,90,.75);outline-offset:2px}
+    .eventCheck input:checked + .eventCheckBox{background:var(--red);border-color:#e46670;box-shadow:0 0 0 3px rgba(182,74,83,.2)}
+    .eventCheck input:checked + .eventCheckBox:after{opacity:1;transform:rotate(-45deg) scale(1)}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(0,348px));gap:12px;align-items:start;justify-content:start;max-width:1068px}
+    .card{width:348px;height:252px;min-height:0;padding:0;grid-template-rows:116px 136px;gap:0;overflow:hidden;cursor:pointer}
+    .cardHero{position:relative;min-height:0;padding:13px 43px 8px 14px;border-bottom:1px solid rgba(244,241,234,.1);display:grid;align-content:start;gap:3px}
+    .cardHero .eventCheck{position:absolute;right:11px;top:13px}
+    .cardCopy{min-width:0;max-width:100%}
+    .cardEventTitle,.cardEventHeadline{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Segoe UI",sans-serif;color:var(--amber);letter-spacing:0}
+    .card .cardEventTitle{font-size:25px;line-height:.92;margin:0;color:var(--amber);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cardEventHeadline{font-size:20px;line-height:1;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cardEventDate{margin-top:6px;color:var(--text);font-size:12.5px;font-weight:900;line-height:1.08;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cardEventLocation{margin-top:2px;color:#d3c7b7;font-size:12px;font-style:italic;font-weight:700;line-height:1.12;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .kpiSnapshot{padding:6px;display:grid;align-items:stretch;min-height:0;background:linear-gradient(180deg,rgba(244,241,234,.018),rgba(0,0,0,.12))}
+    .kpiSnapshot.loading{place-items:center;color:var(--muted);font-size:13px;font-weight:800}
+    .eventKpis{display:grid;grid-template-columns:48px repeat(4,minmax(0,1fr));align-self:stretch;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#11110f}
+    .eventKpis .kpiHeaderRow,.eventKpis .betKpiGroup{display:contents}
+    .eventKpis .kpiCorner,.eventKpis .kpiColHead,.eventKpis .betKpiTitle,.eventKpis .kpi{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0}
+    .eventKpis .kpiColHead:last-child,.eventKpis .betKpiGroup .kpi:last-child{border-right:0}
+    .eventKpis .kpiCorner,.eventKpis .kpiColHead{min-height:16px;display:grid;place-items:center;padding:1px 2px;background:#12120f;color:var(--muted);font-size:6.7px;line-height:.92;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+    .eventKpis .betKpiTitle{display:grid;place-items:center;min-height:30px;padding:1px 2px;background:linear-gradient(90deg,rgba(221,186,90,.16),rgba(221,186,90,.045));color:var(--amber);font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Segoe UI",sans-serif;font-size:12.7px;line-height:.96;font-weight:900;text-align:center}
+    .eventKpis .kpi{min-height:30px;padding:1px 2px;background:transparent;display:grid;place-items:center;text-align:center}
+    .eventKpis .betKpiGroup.last .betKpiTitle,.eventKpis .betKpiGroup.last .kpi{border-bottom:0}
+    .eventKpis .kpi b{font-family:"Bahnschrift SemiCondensed",Bahnschrift,"Segoe UI",sans-serif;font-size:14.6px;line-height:.88}
+    .eventKpis .kpi b.kpiPositive{color:var(--green);text-shadow:0 0 14px rgba(46,158,93,.18)}
+    .eventKpis .kpi b.kpiNegative{color:var(--red);text-shadow:0 0 14px rgba(182,74,83,.2)}
+    .eventKpis .kpiRecord{color:#777167;font-size:.64em;font-style:normal;font-weight:900}
+    @media(max-width:980px){.top{grid-template-columns:1fr}.topRight{justify-content:flex-start}.filterPanel{justify-content:flex-start}}
+    @media(max-width:560px){.topRight{width:100%}.filterPanel{display:grid;grid-template-columns:1fr 1fr;width:100%}.topControls{width:100%;justify-content:flex-start}.grid{grid-template-columns:1fr}.card{width:100%;height:252px}.cardCopy{max-width:100%;padding-right:28px}.eventKpis{grid-template-columns:48px repeat(4,minmax(0,1fr))}}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="top">
+      <div><h1 class="eventTitleText">UFC Event WarRoom</h1></div>
+      <div class="topRight">
+        <div class="topControls">
+          <button class="adminSwitch" id="adminSwitch" type="button" role="switch" aria-checked="false" title="Read-only mode" aria-label="Toggle admin mode"><span class="adminKnob" aria-hidden="true"></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.7-1.5"/></svg></button>
+          <button class="iconAction primary" id="newRoom" title="New WarRoom" aria-label="New WarRoom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+        </div>
+        <div class="filterPanel" aria-label="Event filters and sorting">
+          <div class="filterGroup"><select id="monthFilter" class="filterControl" aria-label="Filter by month"></select></div>
+          <div class="filterGroup"><select id="yearFilter" class="filterControl" aria-label="Filter by year"></select></div>
+          <div class="sortGroup" role="group" aria-label="Sort by date"><button type="button" class="sortButton active" data-sort="desc">Newest</button><button type="button" class="sortButton" data-sort="asc">Oldest</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="grid" id="eventGrid"></section>
+  </main>
+  <div class="modal" id="roomModal" role="dialog" aria-modal="true" aria-labelledby="roomTitle"><form class="dialog" id="roomForm"><div class="dialogHead"><h2 id="roomTitle">New WarRoom</h2><button class="closeIcon" type="button" data-close title="Close" aria-label="Close"></button></div><div class="dialogBody"><div class="field"><label for="eventName">Event Name</label><input id="eventName" required value="{Event Name}" /></div><div class="field"><label for="eventHeadline">Headline</label><input id="eventHeadline" required value="{Fighter Name} vs. {Fighter Name}" /></div><div class="field"><label for="eventDate">Event Date</label><input id="eventDate" required value="{Event Date}" /></div><div class="field"><label for="eventLocation">Location</label><input id="eventLocation" required value="{Event Location}" /></div><div class="field"><label for="eventSlug">Page Slug</label><input id="eventSlug" required readonly value="{Event Date}" /></div><div class="status" id="modalStatus"></div></div><div class="dialogActions"><button class="cardAction" type="button" data-close>Cancel</button><button class="cardAction" type="submit">Download Page</button></div></form></div>
+  <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle"><form class="dialog" id="adminForm"><div class="dialogHead"><h2 id="adminTitle">Enter Admin Password</h2><button class="closeIcon" type="button" data-auth-close title="Close" aria-label="Close"></button></div><div class="dialogBody"><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" /></div><div class="status" id="adminStatus"></div></div><div class="dialogActions"><button class="cardAction" type="button" data-auth-close>Cancel</button><button class="cardAction" type="submit">Unlock</button></div></form></div>
+  <script>
+    const builtInEvents = [
+      {"id":"ufc-fight-night-2026-06-20","title":"UFC Fight Night","headline":"Kape vs. Horiguchi 2","date":"Saturday, June 20, 2026","location":"Meta APEX, Las Vegas, NV","href":"events/20-Jun-2026.html","status":"current","type":"UFC"}
+    ];
+    const state = {month:"all",year:"all",sort:"desc",selected:new Set()};
+    const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+    const ADMIN_STORAGE_KEY = "ufcEventWarRoomAdminUnlocked";
+    const ADMIN_PASSWORD = "Voldemort";
+    let adminModeFallback = false;
+    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const jsString = s => String(s ?? "").replace(/\\/g,"\\\\").replace(/"/g,'\\"');
+    const slugify = value => String(value || "new-ufc-warroom").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"") || "new-ufc-warroom";
+    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const parseEventDate = value => {
+      const cleaned = String(value || "").replace(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+/i,"").trim();
+      const date = new Date(cleaned);
+      return Number.isNaN(date.getTime()) ? null : date;
+    };
+    const dateSlug = value => {
+      const date = parseEventDate(value);
+      if(date) return `${String(date.getDate()).padStart(2,"0")}-${monthNames[date.getMonth()]}-${date.getFullYear()}`;
+      return slugify(value);
+    };
+    const eventDateMeta = event => {
+      const date = parseEventDate(event.date);
+      return date ? {date,month:String(date.getMonth() + 1),year:String(date.getFullYear())} : {date:null,month:"unknown",year:"unknown"};
+    };
+    function isAdminMode(){
+      try{ return adminModeFallback || localStorage.getItem(ADMIN_STORAGE_KEY) === "true"; }
+      catch(error){ return adminModeFallback; }
+    }
+    function setAdminMode(unlocked){
+      adminModeFallback = !!unlocked;
+      try{
+        if(unlocked) localStorage.setItem(ADMIN_STORAGE_KEY, "true");
+        else localStorage.removeItem(ADMIN_STORAGE_KEY);
+      }catch(error){}
+      applyAdminMode();
+    }
+    function applyAdminMode(){
+      const unlocked = isAdminMode();
+      document.body.classList.toggle("admin-mode", unlocked);
+      document.body.classList.toggle("read-only-mode", !unlocked);
+      const adminSwitch = $("#adminSwitch");
+      if(adminSwitch){
+        adminSwitch.setAttribute("aria-checked", unlocked ? "true" : "false");
+        adminSwitch.title = unlocked ? "Admin mode" : "Read-only mode";
+        adminSwitch.setAttribute("aria-label", unlocked ? "Admin mode enabled" : "Admin mode locked");
+      }
+      if(!unlocked) state.selected.clear();
+      render();
+    }
+    function closeAdminModal(){
+      $("#adminModal").classList.remove("open");
+      $("#adminPassword").value = "";
+      $("#adminStatus").textContent = "";
+    }
+    function openAdminModal(){
+      $("#adminModal").classList.add("open");
+      setTimeout(()=>$("#adminPassword").focus(), 0);
+    }
+    function requireAdmin(){
+      if(isAdminMode()) return true;
+      openAdminModal();
+      return false;
+    }
+    function populateFilters(){
+      const metas = builtInEvents.map(eventDateMeta);
+      const monthOptions = [...new Set(metas.map(meta=>meta.month).filter(x=>x !== "unknown"))].sort((a,b)=>Number(a)-Number(b));
+      const yearOptions = [...new Set(metas.map(meta=>meta.year).filter(x=>x !== "unknown"))].sort((a,b)=>Number(b)-Number(a));
+      if(state.month !== "all" && !monthOptions.includes(state.month)) state.month = "all";
+      if(state.year !== "all" && !yearOptions.includes(state.year)) state.year = "all";
+      $("#monthFilter").innerHTML = '<option value="all">All Months</option>' + monthOptions.map(value=>`<option value="${value}">${monthNames[Number(value)-1]}</option>`).join("");
+      $("#yearFilter").innerHTML = '<option value="all">All Years</option>' + yearOptions.map(value=>`<option value="${value}">${value}</option>`).join("");
+      $("#monthFilter").value = state.month;
+      $("#yearFilter").value = state.year;
+    }
+    function card(event){
+      const selected = state.selected.has(event.id);
+      const snapshot = event.snapshot || {};
+      const title = snapshot.name || event.title;
+      const headline = snapshot.headline || event.headline;
+      const dateLine = snapshot.dateLine || event.date;
+      const location = snapshot.location || event.location;
+      let html = '<article class="card cardLink ' + (event.status === "current" ? "current " : "") + (selected ? "selected" : "") + '" data-id="' + esc(event.id) + '" data-href="' + esc(event.href || '#') + '" role="link" tabindex="0" aria-label="Open ' + esc(event.title) + '">';
+      html += '<div class="cardHero">' + (isAdminMode() ? '<label class="eventCheck" title="Select WarRoom"><input type="checkbox" class="eventSelect" data-id="' + esc(event.id) + '" aria-label="Select ' + esc(event.title) + '"' + (selected ? " checked" : "") + '><span class="eventCheckBox" aria-hidden="true"></span></label>' : '') + '<div class="cardCopy"><h2 class="cardEventTitle" data-card-event-title>' + esc(title) + '</h2><div class="cardEventHeadline" data-card-event-headline>' + esc(headline) + '</div><div class="cardEventDate" data-card-event-date>' + esc(dateLine) + '</div><div class="cardEventLocation" data-card-event-location>' + esc(location) + '</div></div></div>';
+      html += '<div class="kpiSnapshot ' + (snapshot.kpisHtml ? "" : "loading") + '" data-kpi-snapshot>' + (snapshot.kpisHtml ? '<div class="eventKpis">' + snapshot.kpisHtml + '</div>' : 'Loading KPI snapshot...') + '</div>';
+      return html + '</article>';
+    }
+    function render(){
+      const items = builtInEvents
+        .filter(event => {
+          const meta = eventDateMeta(event);
+          return (state.month === "all" || meta.month === state.month) && (state.year === "all" || meta.year === state.year);
+        })
+        .sort((a,b) => {
+          const ad = eventDateMeta(a).date?.getTime() || 0;
+          const bd = eventDateMeta(b).date?.getTime() || 0;
+          return state.sort === "asc" ? ad - bd : bd - ad;
+        });
+      $("#eventGrid").innerHTML = items.length ? items.map(card).join("") : '<div class="empty">No events match this view.</div>';
+      items.forEach(loadEventSnapshot);
+    }
+    function findEventCard(event){
+      return $$(".card[data-id]").find(card => card.dataset.id === event.id);
+    }
+    function updateEventCardSnapshot(event){
+      const card = findEventCard(event);
+      if(!card || !event.snapshot) return;
+      const title = card.querySelector("[data-card-event-title]");
+      const headline = card.querySelector("[data-card-event-headline]");
+      const date = card.querySelector("[data-card-event-date]");
+      const location = card.querySelector("[data-card-event-location]");
+      const kpi = card.querySelector("[data-kpi-snapshot]");
+      if(title) title.textContent = event.snapshot.name || event.title;
+      if(headline) headline.textContent = event.snapshot.headline || event.headline;
+      if(date) date.textContent = event.snapshot.dateLine || event.date;
+      if(location) location.textContent = event.snapshot.location || event.location;
+      if(kpi && event.snapshot.kpisHtml){
+        kpi.classList.remove("loading");
+        kpi.innerHTML = '<div class="eventKpis">' + event.snapshot.kpisHtml + '</div>';
+      }
+    }
+    function waitForWarRoomSnapshot(iframe){
+      return new Promise((resolve, reject) => {
+        let tries = 0;
+        const timer = setInterval(() => {
+          tries++;
+          try{
+            const doc = iframe.contentDocument;
+            const kpis = doc?.querySelector("#kpis");
+            if(kpis && kpis.children.length){
+              clearInterval(timer);
+              resolve({
+                name:doc.querySelector("#eventTitle")?.textContent.trim() || "",
+                headline:doc.querySelector("#eventHeadline")?.textContent.trim() || "",
+                dateLine:doc.querySelector("#eventDateTime .eventDateFull")?.textContent.trim() || "",
+                location:doc.querySelector("#eventDateTime .eventLocationLine")?.textContent.trim() || "",
+                kpisHtml:kpis.innerHTML
+              });
+            }else if(tries > 80){
+              clearInterval(timer);
+              reject(new Error("KPI snapshot unavailable."));
+            }
+          }catch(error){
+            clearInterval(timer);
+            reject(error);
+          }
+        }, 50);
+      });
+    }
+    async function loadEventSnapshot(event){
+      if(event.snapshot || event.snapshotLoading || !event.href) return;
+      event.snapshotLoading = true;
+      const iframe = document.createElement("iframe");
+      iframe.src = event.href;
+      iframe.title = "";
+      iframe.tabIndex = -1;
+      iframe.setAttribute("aria-hidden","true");
+      iframe.style.cssText = "position:absolute;width:1px;height:1px;left:-9999px;top:-9999px;opacity:0;pointer-events:none;";
+      try{
+        const loaded = new Promise((resolve, reject) => {
+          iframe.onload = resolve;
+          iframe.onerror = () => reject(new Error("Unable to load WarRoom snapshot."));
+        });
+        document.body.appendChild(iframe);
+        await loaded;
+        event.snapshot = await waitForWarRoomSnapshot(iframe);
+        updateEventCardSnapshot(event);
+      }catch(error){
+        const card = findEventCard(event);
+        const kpi = card?.querySelector("[data-kpi-snapshot]");
+        if(kpi) kpi.textContent = "KPI snapshot unavailable.";
+      }finally{
+        event.snapshotLoading = false;
+        iframe.remove();
+      }
+    }
+    const WARROOM_TEMPLATE_PATH = 'C:\\Users\\tanne\\OneDrive\\TWCE AgentX\\.agentx\\.templates\\WarRooms\\UFC Event WarRoom.html';
+    async function loadTemplate(){ throw new Error('Template source moved to ' + WARROOM_TEMPLATE_PATH + '. Create new event pages through the local automation workflow.'); }
+    function customizeTemplate(html, event){
+      let out = html;
+      out = out.replace(/<title>.*?<\/title>/, '<title>UFC Event WarRoom | ' + esc(event.title) + '</title>');
+      out = out.replace(/<span class="eventTitleText" id="eventTitle">\{Event Name\}<\/span><span class="eventHeadline" id="eventHeadline">\{Fighter Name\} vs\. \{Fighter Name\}<\/span>/g, '<span class="eventTitleText" id="eventTitle">' + esc(event.title) + '</span><span class="eventHeadline" id="eventHeadline">' + esc(event.headline) + '</span>');
+      out = out.replace(/{Event Name}/g, jsString(event.title)).replace(/{Event Date}/g, jsString(event.date)).replace(/{Event Location}/g, jsString(event.location));
+      return out;
+    }
+    function downloadHtml(html, filename){ const blob = new Blob([html], {type:'text/html'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); }
+    function closeModal(){ $("#roomModal").classList.remove("open"); $("#modalStatus").textContent = ""; }
+    $("#newRoom").onclick = () => { if(requireAdmin()) $("#roomModal").classList.add("open"); };
+    $$('[data-close]').forEach(button => button.onclick = closeModal);
+    $("#roomModal").addEventListener('click', event => { if(event.target.id === 'roomModal') closeModal(); });
+    $("#adminSwitch").onclick = () => { isAdminMode() ? setAdminMode(false) : openAdminModal(); };
+    $$('[data-auth-close]').forEach(button => button.onclick = closeAdminModal);
+    $("#adminModal").addEventListener('click', event => { if(event.target.id === 'adminModal') closeAdminModal(); });
+    $("#adminForm").onsubmit = event => {
+      event.preventDefault();
+      if($("#adminPassword").value === ADMIN_PASSWORD){
+        setAdminMode(true);
+        closeAdminModal();
+      }else{
+        $("#adminStatus").textContent = "Incorrect password.";
+        $("#adminPassword").select();
+      }
+    };
+    $("#eventGrid").addEventListener('change', event => {
+      if(!event.target.classList.contains("eventSelect")) return;
+      if(!requireAdmin()){
+        event.target.checked = false;
+        return;
+      }
+      const id = event.target.dataset.id;
+      if(event.target.checked) state.selected.add(id);
+      else state.selected.delete(id);
+      const card = event.target.closest(".card");
+      if(card) card.classList.toggle("selected", event.target.checked);
+    });
+    $("#eventGrid").addEventListener('click', event => {
+      if(event.target.closest(".eventCheck")) return;
+      const card = event.target.closest(".card[data-href]");
+      if(card) window.location.href = card.dataset.href;
+    });
+    $("#eventGrid").addEventListener('keydown', event => {
+      if(event.target.closest(".eventCheck")) return;
+      if(event.key !== "Enter" && event.key !== " ") return;
+      const card = event.target.closest(".card[data-href]");
+      if(!card) return;
+      event.preventDefault();
+      window.location.href = card.dataset.href;
+    });
+    $("#eventDate").addEventListener('input', event => { $("#eventSlug").value = dateSlug(event.target.value); });
+    $("#monthFilter").onchange = event => { state.month = event.target.value; render(); };
+    $("#yearFilter").onchange = event => { state.year = event.target.value; render(); };
+    $$('[data-sort]').forEach(button => button.onclick = () => { state.sort = button.dataset.sort; $$('[data-sort]').forEach(b => b.classList.toggle('active', b === button)); render(); });
+    $("#roomForm").onsubmit = async event => {
+      event.preventDefault();
+      if(!requireAdmin()) return;
+      const data = {id:dateSlug($("#eventDate").value),title:$("#eventName").value.trim(),headline:$("#eventHeadline").value.trim(),date:$("#eventDate").value.trim(),location:$("#eventLocation").value.trim()};
+      $("#eventSlug").value = data.id;
+      try{ const html = customizeTemplate(await loadTemplate(), data); closeModal(); downloadHtml(html, data.id + '.html'); }
+      catch(error){ $("#modalStatus").textContent = error.message || "Unable to create WarRoom."; }
+    };
+    populateFilters();
+    applyAdminMode();
+  </script>
+</body>
+</html>
