@@ -15,13 +15,6 @@
     .topControls .iconAction{width:42px;height:42px}
     .topControls .iconAction svg{width:21px;height:21px}
     .iconAction[hidden]{display:none}
-    .adminSwitch{position:relative;width:78px;height:42px;border:1px solid var(--line);border-radius:999px;background:#11110f;color:var(--muted);padding:0;display:inline-grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;transition:border-color .16s ease,background .16s ease,color .16s ease}
-    .adminSwitch:hover{border-color:rgba(221,186,90,.72);color:var(--amber)}
-    .adminSwitch[aria-checked="true"]{border-color:rgba(46,158,93,.82);background:rgba(46,158,93,.2);color:#d9ffe7}
-    .adminSwitch .adminKnob{position:absolute;left:4px;top:4px;width:32px;height:32px;border-radius:999px;background:#2a2a26;border:1px solid rgba(244,241,234,.12);box-shadow:0 8px 18px rgba(0,0,0,.34);transition:transform .18s ease,background .18s ease,border-color .18s ease}
-    .adminSwitch[aria-checked="true"] .adminKnob{transform:translateX(36px);background:var(--green);border-color:var(--green)}
-    .adminSwitch svg{position:relative;z-index:1;width:17px;height:17px;justify-self:center;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
-    body:not(.admin-mode) #newRoom,body:not(.admin-mode) .eventCheck{display:none!important}
     .cardLink{color:inherit;text-decoration:none;position:relative;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease,transform .16s ease}
     .cardLink:hover,.cardLink:focus-visible{border-color:rgba(221,186,90,.86);background:linear-gradient(180deg,rgba(221,186,90,.12),var(--panel));box-shadow:inset 3px 0 0 var(--amber),0 12px 28px rgba(0,0,0,.28);outline:0;transform:translateY(-1px)}
     .cardLink:hover h2,.cardLink:focus-visible h2{color:var(--amber)}
@@ -68,7 +61,6 @@
       <div><h1 class="eventTitleText">UFC Event WarRoom</h1></div>
       <div class="topRight">
         <div class="topControls">
-          <button class="adminSwitch" id="adminSwitch" type="button" role="switch" aria-checked="false" title="Read-only mode" aria-label="Toggle admin mode"><span class="adminKnob" aria-hidden="true"></span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.7-1.5"/></svg></button>
           <button class="iconAction primary" id="newRoom" title="New WarRoom" aria-label="New WarRoom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
         </div>
         <div class="filterPanel" aria-label="Event filters and sorting">
@@ -81,16 +73,12 @@
     <section class="grid" id="eventGrid"></section>
   </main>
   <div class="modal" id="roomModal" role="dialog" aria-modal="true" aria-labelledby="roomTitle"><form class="dialog" id="roomForm"><div class="dialogHead"><h2 id="roomTitle">New WarRoom</h2><button class="closeIcon" type="button" data-close title="Close" aria-label="Close"></button></div><div class="dialogBody"><div class="field"><label for="eventName">Event Name</label><input id="eventName" required value="{Event Name}" /></div><div class="field"><label for="eventHeadline">Headline</label><input id="eventHeadline" required value="{Fighter Name} vs. {Fighter Name}" /></div><div class="field"><label for="eventDate">Event Date</label><input id="eventDate" required value="{Event Date}" /></div><div class="field"><label for="eventLocation">Location</label><input id="eventLocation" required value="{Event Location}" /></div><div class="field"><label for="eventSlug">Page Slug</label><input id="eventSlug" required readonly value="{Event Date}" /></div><div class="status" id="modalStatus"></div></div><div class="dialogActions"><button class="cardAction" type="button" data-close>Cancel</button><button class="cardAction" type="submit">Download Page</button></div></form></div>
-  <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle"><form class="dialog" id="adminForm"><div class="dialogHead"><h2 id="adminTitle">Enter Admin Password</h2><button class="closeIcon" type="button" data-auth-close title="Close" aria-label="Close"></button></div><div class="dialogBody"><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" /></div><div class="status" id="adminStatus"></div></div><div class="dialogActions"><button class="cardAction" type="button" data-auth-close>Cancel</button><button class="cardAction" type="submit">Unlock</button></div></form></div>
   <script>
     const builtInEvents = [
       {"id":"ufc-fight-night-2026-06-20","title":"UFC Fight Night","headline":"Kape vs. Horiguchi 2","date":"Saturday, June 20, 2026","location":"Meta APEX, Las Vegas, NV","href":"events/20-Jun-2026.html","status":"current","type":"UFC"}
     ];
     const state = {month:"all",year:"all",sort:"desc",selected:new Set()};
     const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
-    const ADMIN_STORAGE_KEY = "ufcEventWarRoomAdminUnlocked";
-    const ADMIN_PASSWORD = "Voldemort";
-    let adminModeFallback = false;
     const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const jsString = s => String(s ?? "").replace(/\\/g,"\\\\").replace(/"/g,'\\"');
     const slugify = value => String(value || "new-ufc-warroom").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"") || "new-ufc-warroom";
@@ -109,45 +97,6 @@
       const date = parseEventDate(event.date);
       return date ? {date,month:String(date.getMonth() + 1),year:String(date.getFullYear())} : {date:null,month:"unknown",year:"unknown"};
     };
-    function isAdminMode(){
-      try{ return adminModeFallback || localStorage.getItem(ADMIN_STORAGE_KEY) === "true"; }
-      catch(error){ return adminModeFallback; }
-    }
-    function setAdminMode(unlocked){
-      adminModeFallback = !!unlocked;
-      try{
-        if(unlocked) localStorage.setItem(ADMIN_STORAGE_KEY, "true");
-        else localStorage.removeItem(ADMIN_STORAGE_KEY);
-      }catch(error){}
-      applyAdminMode();
-    }
-    function applyAdminMode(){
-      const unlocked = isAdminMode();
-      document.body.classList.toggle("admin-mode", unlocked);
-      document.body.classList.toggle("read-only-mode", !unlocked);
-      const adminSwitch = $("#adminSwitch");
-      if(adminSwitch){
-        adminSwitch.setAttribute("aria-checked", unlocked ? "true" : "false");
-        adminSwitch.title = unlocked ? "Admin mode" : "Read-only mode";
-        adminSwitch.setAttribute("aria-label", unlocked ? "Admin mode enabled" : "Admin mode locked");
-      }
-      if(!unlocked) state.selected.clear();
-      render();
-    }
-    function closeAdminModal(){
-      $("#adminModal").classList.remove("open");
-      $("#adminPassword").value = "";
-      $("#adminStatus").textContent = "";
-    }
-    function openAdminModal(){
-      $("#adminModal").classList.add("open");
-      setTimeout(()=>$("#adminPassword").focus(), 0);
-    }
-    function requireAdmin(){
-      if(isAdminMode()) return true;
-      openAdminModal();
-      return false;
-    }
     function populateFilters(){
       const metas = builtInEvents.map(eventDateMeta);
       const monthOptions = [...new Set(metas.map(meta=>meta.month).filter(x=>x !== "unknown"))].sort((a,b)=>Number(a)-Number(b));
@@ -167,7 +116,7 @@
       const dateLine = snapshot.dateLine || event.date;
       const location = snapshot.location || event.location;
       let html = '<article class="card cardLink ' + (event.status === "current" ? "current " : "") + (selected ? "selected" : "") + '" data-id="' + esc(event.id) + '" data-href="' + esc(event.href || '#') + '" role="link" tabindex="0" aria-label="Open ' + esc(event.title) + '">';
-      html += '<div class="cardHero">' + (isAdminMode() ? '<label class="eventCheck" title="Select WarRoom"><input type="checkbox" class="eventSelect" data-id="' + esc(event.id) + '" aria-label="Select ' + esc(event.title) + '"' + (selected ? " checked" : "") + '><span class="eventCheckBox" aria-hidden="true"></span></label>' : '') + '<div class="cardCopy"><h2 class="cardEventTitle" data-card-event-title>' + esc(title) + '</h2><div class="cardEventHeadline" data-card-event-headline>' + esc(headline) + '</div><div class="cardEventDate" data-card-event-date>' + esc(dateLine) + '</div><div class="cardEventLocation" data-card-event-location>' + esc(location) + '</div></div></div>';
+      html += '<div class="cardHero">' + '<label class="eventCheck" title="Select WarRoom"><input type="checkbox" class="eventSelect" data-id="' + esc(event.id) + '" aria-label="Select ' + esc(event.title) + '"' + (selected ? " checked" : "") + '><span class="eventCheckBox" aria-hidden="true"></span></label>' + '<div class="cardCopy"><h2 class="cardEventTitle" data-card-event-title>' + esc(title) + '</h2><div class="cardEventHeadline" data-card-event-headline>' + esc(headline) + '</div><div class="cardEventDate" data-card-event-date>' + esc(dateLine) + '</div><div class="cardEventLocation" data-card-event-location>' + esc(location) + '</div></div></div>';
       html += '<div class="kpiSnapshot ' + (snapshot.kpisHtml ? "" : "loading") + '" data-kpi-snapshot>' + (snapshot.kpisHtml ? '<div class="eventKpis">' + snapshot.kpisHtml + '</div>' : 'Loading KPI snapshot...') + '</div>';
       return html + '</article>';
     }
@@ -271,29 +220,11 @@
     }
     function downloadHtml(html, filename){ const blob = new Blob([html], {type:'text/html'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); }
     function closeModal(){ $("#roomModal").classList.remove("open"); $("#modalStatus").textContent = ""; }
-    $("#newRoom").onclick = () => { if(requireAdmin()) $("#roomModal").classList.add("open"); };
+    $("#newRoom").onclick = () => { $("#roomModal").classList.add("open"); };
     $$('[data-close]').forEach(button => button.onclick = closeModal);
     $("#roomModal").addEventListener('click', event => { if(event.target.id === 'roomModal') closeModal(); });
-    $("#adminSwitch").onclick = () => { isAdminMode() ? setAdminMode(false) : openAdminModal(); };
-    $$('[data-auth-close]').forEach(button => button.onclick = closeAdminModal);
-    $("#adminModal").addEventListener('click', event => { if(event.target.id === 'adminModal') closeAdminModal(); });
-    $("#adminForm").onsubmit = event => {
-      event.preventDefault();
-      if($("#adminPassword").value === ADMIN_PASSWORD){
-        setAdminMode(true);
-        closeAdminModal();
-      }else{
-        $("#adminStatus").textContent = "Incorrect password.";
-        $("#adminPassword").select();
-      }
-    };
     $("#eventGrid").addEventListener('change', event => {
-      if(!event.target.classList.contains("eventSelect")) return;
-      if(!requireAdmin()){
-        event.target.checked = false;
-        return;
-      }
-      const id = event.target.dataset.id;
+      if(!event.target.classList.contains("eventSelect")) return;      const id = event.target.dataset.id;
       if(event.target.checked) state.selected.add(id);
       else state.selected.delete(id);
       const card = event.target.closest(".card");
@@ -318,14 +249,13 @@
     $$('[data-sort]').forEach(button => button.onclick = () => { state.sort = button.dataset.sort; $$('[data-sort]').forEach(b => b.classList.toggle('active', b === button)); render(); });
     $("#roomForm").onsubmit = async event => {
       event.preventDefault();
-      if(!requireAdmin()) return;
       const data = {id:dateSlug($("#eventDate").value),title:$("#eventName").value.trim(),headline:$("#eventHeadline").value.trim(),date:$("#eventDate").value.trim(),location:$("#eventLocation").value.trim()};
       $("#eventSlug").value = data.id;
       try{ const html = customizeTemplate(await loadTemplate(), data); closeModal(); downloadHtml(html, data.id + '.html'); }
       catch(error){ $("#modalStatus").textContent = error.message || "Unable to create WarRoom."; }
     };
     populateFilters();
-    applyAdminMode();
+    render();
   </script>
 </body>
 </html>
