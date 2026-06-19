@@ -5646,6 +5646,8 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     "fighterBProfileUrl": "https://www.tapology.com/fightcenter/fighters/19983-kyoji-horiguchi"
   }
 ];
+    const analystHeaderLabels = ["Chris DPG","Topside MMA","DFS Weezy","KennyO MMA","Fight Fairy"];
+    const analystReadLabel = index => analystHeaderLabels[index] || `Analyst ${index + 1}`;
     const researchTabDefs = [{id:"gameScript",label:"Game Script"},{id:"bestBets",label:"Best Bets"},{id:"keyQuotes",label:"Key Quotes"}];
     const researchTabIds = researchTabDefs.map(tab=>tab.id);
     const researchTabValue = value => researchTabIds.includes(value) ? value : "gameScript";
