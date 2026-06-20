@@ -169,6 +169,23 @@ body.lanistra-ledger-control .mobileDetailPanel {
   gap: 8px;
   min-width: 0;
 }
+body.lanistra-ledger-control .mobileCardActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 2px 0 0;
+}
+body.lanistra-ledger-control .mobileCardActions .action {
+  min-height: 34px;
+  padding: 0 14px;
+}
+body.lanistra-ledger-control .mobileCardActions .editBtn {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
 body.lanistra-ledger-control .mobileOverviewPanel {
   display: grid;
   gap: 8px;
@@ -10426,6 +10443,7 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       {id:"keyQuotes",label:"Key Quote"}
     ];
     const mobileDetailTabValue = value => mobileDetailTabDefs.some(tab=>tab.id===value) ? value : "portfolio";
+    const workspaceEditLabel = tabId => tabId === "portfolio" || tabId === "clips" ? "Edit gameplan thesis" : `Edit ${researchTabLabel(tabId)}`;
     function mobileOverviewPanel(f){
       const betTable = activeBetTable(f) || cardBetPlaceholder();
       const tagHtml = chips(f);
@@ -10436,7 +10454,9 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       const activeTab = mobileDetailTabValue(state.detailTab);
       const tabs = `<div class="mobileDetailTabs" aria-label="Active fight sections">${mobileDetailTabDefs.map(tab=>`<button type="button" class="mobileDetailTab ${activeTab===tab.id?"active":""}" data-tab="${esc(tab.id)}" aria-pressed="${activeTab===tab.id}">${esc(tab.label)}</button>`).join("")}</div>`;
       const panel = activeTab === "portfolio" ? mobileOverviewPanel(f) : analystTab(f, activeTab);
-      return `<article class="card selected mobileActiveCard">${tabs}<div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div><div class="mobileDetailPanel">${panel}</div></article>`;
+      const editLabel = workspaceEditLabel(activeTab);
+      const actions = `<div class="mobileCardActions"><button type="button" class="action" id="mobileEditFightTags" data-fight-tags-control>Tags</button><button type="button" class="editBtn" id="mobileEditFightTop" data-workspace-edit-control title="${esc(editLabel)}" aria-label="${esc(editLabel)}">&#9998;</button></div>`;
+      return `<article class="card selected mobileActiveCard">${tabs}<div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div><div class="mobileDetailPanel">${panel}</div>${actions}</article>`;
     }
     const youtubeVideoId = value => {
       const raw = String(value || "").trim();
@@ -10594,8 +10614,8 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
     function detailWorkspace(f){
       if(state.detailTab === "markets" || state.detailTab === "analyst") state.detailTab = state.detailTab === "analyst" ? "gameScript" : "portfolio";
       const researchTabs = researchTabDefs.map(tab=>`<button class="tabBtn ${state.detailTab===tab.id?"active":""}" data-tab="${esc(tab.id)}">${esc(tab.label)}</button>`).join("");
-      const editLabel = state.detailTab === "portfolio" ? "Edit gameplan thesis" : (state.detailTab === "clips" ? "Edit gameplan thesis" : `Edit ${researchTabLabel(state.detailTab)}`);
-      const tabs = `<div class="workspaceHead"><div class="tabs"><button class="tabBtn ${state.detailTab==="portfolio"?"active":""}" data-tab="portfolio">Portfolio</button>${researchTabs}<button class="tabBtn ${state.detailTab==="clips"?"active":""}" data-tab="clips">Video Sources</button></div><div class="workspaceMeta"><button type="button" class="action" id="editFightTags">Tags</button><button class="editBtn" id="editFightTop" title="${esc(editLabel)}" aria-label="${esc(editLabel)}">&#9998;</button></div></div>`;
+      const editLabel = workspaceEditLabel(state.detailTab);
+      const tabs = `<div class="workspaceHead"><div class="tabs"><button class="tabBtn ${state.detailTab==="portfolio"?"active":""}" data-tab="portfolio">Portfolio</button>${researchTabs}<button class="tabBtn ${state.detailTab==="clips"?"active":""}" data-tab="clips">Video Sources</button></div><div class="workspaceMeta"><button type="button" class="action" id="editFightTags" data-fight-tags-control>Tags</button><button class="editBtn" id="editFightTop" data-workspace-edit-control title="${esc(editLabel)}" aria-label="${esc(editLabel)}">&#9998;</button></div></div>`;
       if(state.detailTab==="clips"){
         const clips = Array.isArray(f.videoSources) ? f.videoSources : [];
         if(!clips.length) return `${tabs}${noneBox()}`;
@@ -10918,8 +10938,8 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       $$("[data-schedule-field]").forEach(el=>el.onchange=()=>{ const f=fights.find(x=>x.id===Number(el.dataset.fight)); if(f){ f[el.dataset.scheduleField]=el.value; save(); render(); } });
       $$("[data-toggle-complete-fight]").forEach(button=>button.onclick=e=>{ e.stopPropagation(); toggleScheduledFightComplete(Number(button.dataset.toggleCompleteFight)); });
       $$("[data-edit-fighter-name]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); const [idRaw,sideRaw]=b.dataset.editFighterName.split("|"); openFighterName(Number(idRaw), sideRaw); });
-      const editFightTop = $("#editFightTop"); if(editFightTop) editFightTop.onclick=openWorkspaceEditor;
-      const editFightTags = $("#editFightTags"); if(editFightTags) editFightTags.onclick=openFightTags;
+      $$("[data-workspace-edit-control]").forEach(button=>button.onclick=openWorkspaceEditor);
+      $$("[data-fight-tags-control]").forEach(button=>button.onclick=openFightTags);
       $("#editEvent").onclick=openEvent;
       $$("[data-exposure-stage]").forEach(b=>b.onclick=()=>{ state.exposureStage = exposureStageValue(b.dataset.exposureStage); save(); render(); });
       $$("[data-tab]").forEach(b=>b.onclick=()=>{ state.detailTab=b.dataset.tab; state.clipThesisOpen=false; render();});
