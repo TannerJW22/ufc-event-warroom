@@ -26,7 +26,7 @@
     .search{display:none;min-height:38px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text);padding:0 12px;width:100%}
     .filters{display:flex;gap:8px;flex-wrap:wrap}.pill{min-height:38px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text);padding:0 13px}.pill.active{background:var(--green);border-color:var(--green);color:#07130d;font-weight:760}
     .layout{display:grid;grid-template-columns:300px minmax(580px,1fr) 520px;gap:14px;align-items:start}
-    .panel{border:1px solid var(--line);border-radius:8px;background:rgba(27,27,26,.98);overflow:hidden}.head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line)}.head h2{font-size:17px;margin:0}.scheduleHead{width:100%;background:transparent;color:var(--text);text-align:left}.scheduleToggle{display:flex;align-items:center;gap:6px;border:0;background:transparent;color:inherit;padding:0;text-align:left;cursor:default;min-width:0}.scheduleToggle h2{white-space:nowrap}.scheduleHead .chev{display:none;color:var(--amber)}.scheduleActions{display:flex;gap:8px;align-items:center;flex:0 0 auto;margin-left:auto}.scheduleEditBtn{width:26px;height:26px;min-width:26px;min-height:26px}.countPill{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:28px;padding:3px 10px;border:1px solid rgba(221,186,90,.55);border-radius:999px;background:var(--amberBg);color:var(--amber);font-family:"Cascadia Mono",Consolas,monospace;font-size:13px;font-weight:800;white-space:nowrap}
+    .panel{border:1px solid var(--line);border-radius:8px;background:rgba(27,27,26,.98);overflow:hidden}.head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line)}.head h2{font-size:17px;margin:0}.scheduleHead{width:100%;background:transparent;color:var(--text);text-align:left}.scheduleToggle{display:flex;align-items:center;gap:6px;flex:1 1 auto;border:0;background:transparent;color:inherit;padding:0;text-align:left;cursor:pointer;min-width:0}.scheduleToggle h2{white-space:nowrap}.scheduleHead .chev{display:none!important;color:var(--amber)}.scheduleActions{display:flex;gap:8px;align-items:center;flex:0 0 auto;margin-left:auto}.scheduleEditBtn{width:26px;height:26px;min-width:26px;min-height:26px}.countPill{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:28px;padding:3px 10px;border:1px solid rgba(221,186,90,.55);border-radius:999px;background:var(--amberBg);color:var(--amber);font-family:"Cascadia Mono",Consolas,monospace;font-size:13px;font-weight:800;white-space:nowrap}
     .rail{padding:10px;display:grid;gap:8px;max-height:calc(100vh - 172px);overflow:auto;scrollbar-width:thin;scrollbar-color:var(--amber) #11110f}.rail::-webkit-scrollbar,.cards::-webkit-scrollbar{width:10px;height:10px}.rail::-webkit-scrollbar-track,.cards::-webkit-scrollbar-track{background:#11110f;border-left:1px solid var(--line);border-radius:999px}.rail::-webkit-scrollbar-thumb,.cards::-webkit-scrollbar-thumb{background:var(--amber);border:2px solid #11110f;border-radius:999px}.rail::-webkit-scrollbar-thumb:hover,.cards::-webkit-scrollbar-thumb:hover{background:#efd27a}.scheduleItem,.scheduleEditor{text-align:left;border:1px solid var(--line);border-left:5px solid transparent;border-radius:8px;background:var(--panel2);color:var(--text);padding:11px;min-height:72px}.scheduleItem.active,.scheduleEditor.active{background:var(--greenBg);border-color:var(--green);border-left-color:transparent;color:var(--green)}.scheduleMeta{margin-top:8px;color:var(--muted);font-size:13px;line-height:1.25}.scheduleGrid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}.scheduleGrid label{display:grid;gap:4px;color:var(--muted);font-size:11px;text-transform:none;letter-spacing:0;font-weight:800}.scheduleGrid select{width:100%;border:1px solid var(--line);border-radius:7px;background:#12120f;color:var(--text);padding:7px 8px;font-size:13px}.schedulePick{display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:0}
     .time{color:var(--amber);font-family:"Cascadia Mono",Consolas,monospace;font-weight:800;font-size:18px}.small{font-size:13px;color:var(--muted)}.fight-name{font-size:18px;line-height:1.25;margin-top:6px}.scheduleItem{position:relative;padding:11px 46px 11px 11px}.scheduleItem.completed{opacity:.78}.scheduleItem.completed .fight-name{margin-top:0}.scheduleCardPick{display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:0}.scheduleCompleteBtn{position:absolute;right:8px;bottom:8px;display:inline-grid;place-items:center;width:30px;height:30px;border:1px solid rgba(244,241,234,.11);border-radius:7px;background:rgba(244,241,234,.028);color:rgba(244,241,234,.36);padding:0;transition:border-color .15s ease,background .15s ease,color .15s ease}.scheduleCompleteBtn svg{display:block;width:21px;height:21px;stroke:currentColor;stroke-width:3.3;stroke-linecap:round;stroke-linejoin:round;fill:none}.scheduleCompleteBtn:hover{border-color:rgba(221,186,90,.36);background:rgba(221,186,90,.06);color:rgba(221,186,90,.68)}
     .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;min-height:31px;padding:4px 12px;font-size:15px;color:var(--text);background:#151512;white-space:nowrap}.chip.green{color:#63d292;background:var(--greenBg);border-color:rgba(46,158,93,.62)}.chip.red{color:#e0747c;background:var(--redBg);border-color:rgba(100,22,28,.85)}.chip.amber{color:var(--amber);background:var(--amberBg);border-color:rgba(221,186,90,.65)}.chip.cyan{color:#9fc1dc;background:var(--blueBg);border-color:rgba(47,134,211,.85)}
@@ -131,6 +131,44 @@ body.lanistra-ledger-control .detail {
 body.lanistra-ledger-control .detail > * {
   min-width: 0;
 }
+body.lanistra-ledger-control .desktopFightDetail {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+body.lanistra-ledger-control .mobileActiveCard {
+  display: none;
+}
+body.lanistra-ledger-control .mobileDetailTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: stretch;
+  min-width: 0;
+}
+body.lanistra-ledger-control .mobileDetailTab {
+  flex: 1 1 108px;
+  min-width: 0;
+  min-height: 36px;
+  border: 1px solid rgba(244,241,234,.16);
+  border-radius: 7px;
+  background: linear-gradient(180deg,rgba(244,241,234,.055),rgba(20,20,17,.96));
+  color: #c7beb0;
+  padding: 0 8px;
+  font-weight: 850;
+  letter-spacing: .01em;
+}
+body.lanistra-ledger-control .mobileDetailTab.active {
+  border-color: var(--amber);
+  background: linear-gradient(180deg,rgba(221,186,90,.22),#161614);
+  color: var(--amber);
+  box-shadow: inset 0 2px 0 var(--amber);
+}
+body.lanistra-ledger-control .mobileDetailPanel {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
 body.lanistra-ledger-control .panel { background: #141411; box-shadow: none; }
 body.lanistra-ledger-control .hero { border-left-width: 3px; background: linear-gradient(90deg, rgba(240,206,93,.12), rgba(27,27,26,.98) 36%); box-shadow: none; }
 body.lanistra-ledger-control .scheduleItem,
@@ -156,6 +194,13 @@ body.lanistra-ledger-control .scheduleCompleteBtn svg {
   height: 19px;
   stroke-width: 3;
   transform: translateY(1px);
+}
+body.lanistra-ledger-control .panel.schedule.collapsed .rail .scheduleItem:not(.active),
+body.lanistra-ledger-control .panel.schedule.collapsed .rail .scheduleEditor:not(.active) {
+  display: none;
+}
+body.lanistra-ledger-control .panel.schedule.collapsed .rail {
+  max-height: none;
 }
 body.lanistra-ledger-control .hero.heroLinkedOdds {
   --hero-gap: 14px;
@@ -269,10 +314,12 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   body.lanistra-ledger-control .top{grid-template-columns:1fr;grid-template-areas:"main" "side";gap:8px;align-items:start;justify-items:center;min-height:0;margin-bottom:10px;padding:2px 0 0}
   body.lanistra-ledger-control .topMain,
   body.lanistra-ledger-control .sideStack{width:100%;min-width:0;max-width:100%;min-height:0}
-  body.lanistra-ledger-control .sideStack{max-width:430px}
+  body.lanistra-ledger-control .sideStack{justify-self:stretch}
   body.lanistra-ledger-control .metrics,
   body.lanistra-ledger-control .kpis,
   body.lanistra-ledger-control .topControls{width:100%;min-width:0;max-width:100%}
+  body.lanistra-ledger-control .metrics,
+  body.lanistra-ledger-control .topControls{justify-self:stretch}
   body.lanistra-ledger-control .topControls{gap:4px;grid-template-columns:repeat(3,minmax(32px,40px)) minmax(64px,1fr) minmax(64px,1fr) minmax(32px,40px)}
   body.lanistra-ledger-control .topAction{min-height:36px;padding:0 6px}
   body.lanistra-ledger-control .topAction svg{width:16px;height:16px}
@@ -292,6 +339,19 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   body.lanistra-ledger-control .tabs{flex-wrap:wrap;gap:5px;align-items:stretch;border-bottom:0;padding:0}
   body.lanistra-ledger-control .tabBtn,
   body.lanistra-ledger-control .tabBtn + .tabBtn{top:0;margin-left:0;flex:1 1 108px;min-width:0;border-radius:7px;padding:0 8px}
+  body.lanistra-ledger-control .researchSubtabBar{flex-wrap:wrap;gap:5px;border-bottom:0;margin:0 0 8px;padding:0}
+  body.lanistra-ledger-control .researchSubtabBar .portfolioToggleTab,
+  body.lanistra-ledger-control .researchSubtabBar .portfolioToggleTab + .portfolioToggleTab{top:0;margin-left:0;flex:1 1 108px;min-width:0;border-radius:7px;padding:0 8px}
+  body.lanistra-ledger-control .desktopFightDetail{display:none}
+  body.lanistra-ledger-control .mobileActiveCard{display:grid}
+  body.lanistra-ledger-control .mobileActiveCard .cardTop.cardTopWithPhotos,
+  body.lanistra-ledger-control .mobileActiveCard .fighterPhotos{height:64px}
+  body.lanistra-ledger-control .mobileActiveCard .fighterIdentity{height:64px}
+  body.lanistra-ledger-control .mobileActiveCard .fighterIdentity::after{background:linear-gradient(180deg,rgba(0,0,0,0) 6%,rgba(0,0,0,.46) 25%,rgba(0,0,0,.9) 100%)}
+  body.lanistra-ledger-control .mobileActiveCard .fighterIdentityName{top:25%;bottom:0;left:5px;right:5px;display:flex;align-items:flex-end;justify-content:center;padding:0 4px 7px;font-size:18px;line-height:.93;white-space:normal;text-overflow:clip}
+  body.lanistra-ledger-control .mobileActiveCard .fighterPhotoFallback{font-size:22px}
+  body.lanistra-ledger-control .mobileActiveCard .workspaceBox{padding:10px}
+  body.lanistra-ledger-control .mobileActiveCard .readBody{padding:11px 12px}
   body.lanistra-ledger-control .scheduleToggle{cursor:pointer}
   body.lanistra-ledger-control .scheduleHead .chev{display:inline}
   body.lanistra-ledger-control .panel.schedule.collapsed .rail .scheduleItem:not(.active){display:none}
@@ -351,7 +411,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
       </div>
     </section>
     <section class="layout">
-      <aside class="panel schedule" id="schedulePanel"><div class="head scheduleHead"><button type="button" class="scheduleToggle" id="scheduleToggle"><h2>Fight Schedule <span class="chev" id="scheduleChev">-</span></h2></button><span class="countPill" id="fightCountPill">0</span><div class="scheduleActions"><button type="button" class="editBtn scheduleEditBtn" id="scheduleEdit" title="Edit schedule" aria-label="Edit schedule">&#9998;</button></div></div><div class="rail" id="rail"></div></aside>
+      <aside class="panel schedule" id="schedulePanel"><div class="head scheduleHead"><button type="button" class="scheduleToggle" id="scheduleToggle"><h2>Fight Schedule <span class="chev" id="scheduleChev"></span></h2></button><span class="countPill" id="fightCountPill">0</span><div class="scheduleActions"><button type="button" class="editBtn scheduleEditBtn" id="scheduleEdit" title="Edit schedule" aria-label="Edit schedule">&#9998;</button></div></div><div class="rail" id="rail"></div></aside>
       <section class="panel"><div id="detail"></div></section>
       <aside class="panel right"><div class="head"><h2>Card Grid</h2><span class="small">Click a card to inspect</span></div><div class="cards" id="cards"></div></aside>
     </section>
@@ -3509,7 +3569,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     }
   ],
   "uiState": {
-    "detailTab": "gameScript",
+    "detailTab": "portfolio",
     "clipIndex": 0,
     "clipThesisOpen": false,
     "exposureStage": "prefight",
@@ -10195,6 +10255,19 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
     };
     const portfolioTab = f => `<div class="portfolioTab">${tagsStrip(f)}<div class="portfolioContentGrid"><section class="workspaceBox activeBetsBox">${exposureTabsHtml()}${activeBetsBlock(f)}</section><section class="workspaceBox thesisBox"><div class="workspaceBoxHeader"><h3 class="workspaceBoxTitle">Gameplan Thesis</h3></div>${thesisBlock(f)}</section></div></div>`;
     const analystTab = (f, tabId=state.detailTab) => `<section class="workspaceBox analystTab">${analystReads(f, tabId)}</section>`;
+    const mobileDetailTabDefs = [
+      {id:"portfolio",label:"Overview"},
+      {id:"gameScript",label:"Game Script"},
+      {id:"bestBets",label:"Best Bets"},
+      {id:"keyQuotes",label:"Key Quote"}
+    ];
+    const mobileDetailTabValue = value => mobileDetailTabDefs.some(tab=>tab.id===value) ? value : "portfolio";
+    function mobileActiveCard(f){
+      const activeTab = mobileDetailTabValue(state.detailTab);
+      const tabs = `<div class="mobileDetailTabs" aria-label="Active fight sections">${mobileDetailTabDefs.map(tab=>`<button type="button" class="mobileDetailTab ${activeTab===tab.id?"active":""}" data-tab="${esc(tab.id)}" aria-pressed="${activeTab===tab.id}">${esc(tab.label)}</button>`).join("")}</div>`;
+      const panel = activeTab === "portfolio" ? cardPills(f) : analystTab(f, activeTab);
+      return `<article class="card selected mobileActiveCard"><div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div>${oddsGrid(f,true)}${tabs}<div class="mobileDetailPanel">${panel}</div></article>`;
+    }
     const youtubeVideoId = value => {
       const raw = String(value || "").trim();
       if(!raw) return "";
@@ -10651,9 +10724,9 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       $("#scheduleEdit").title = state.scheduleEditing ? "Done editing schedule" : "Edit schedule";
       $("#scheduleEdit").setAttribute("aria-label", state.scheduleEditing ? "Done editing schedule" : "Edit schedule");
       $("#schedulePanel").classList.toggle("collapsed",state.scheduleCollapsed);
-      $("#scheduleChev").textContent = state.scheduleCollapsed ? "+" : "-";
+      $("#scheduleChev").textContent = "";
       $("#rail").innerHTML = scheduleItems(items).map(f=>scheduleItemHtml(f, selected)).join("") || '<div class="empty">No fights match search.</div>';
-      $("#detail").innerHTML = `<div class="detail">${fightHero(selected)}${detailWorkspace(selected)}</div>`;
+      $("#detail").innerHTML = `<div class="detail"><div class="desktopFightDetail">${fightHero(selected)}${detailWorkspace(selected)}</div>${mobileActiveCard(selected)}</div>`;
       $("#cards").innerHTML = items.map(f=>`<article class="card ${f.id===selected.id?'selected':''}" data-select="${f.id}"><div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div>${oddsGrid(f,true)}${cardPills(f)}</article>`).join("") || '<div class="empty">No fights match search.</div>';
       wire();
     }
@@ -10666,7 +10739,7 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       $("#openPortfolio").onclick=openPortfolio;
       $("#openTags").onclick=openTags;
       $("#exportEventData").onclick=exportEventData;
-      $("#scheduleToggle").onclick=()=>{ if(matchMedia("(max-width: 1160px)").matches){ state.scheduleCollapsed=!state.scheduleCollapsed; render(); } };
+      $("#scheduleToggle").onclick=()=>{ state.scheduleCollapsed=!state.scheduleCollapsed; render(); };
       $("#scheduleEdit").onclick=()=>{ state.scheduleEditing=!state.scheduleEditing; if(state.scheduleEditing) state.scheduleCollapsed=false; render(); };
       $$("[data-schedule-field]").forEach(el=>el.onchange=()=>{ const f=fights.find(x=>x.id===Number(el.dataset.fight)); if(f){ f[el.dataset.scheduleField]=el.value; save(); render(); } });
       $$("[data-toggle-complete-fight]").forEach(button=>button.onclick=e=>{ e.stopPropagation(); toggleScheduledFightComplete(Number(button.dataset.toggleCompleteFight)); });
