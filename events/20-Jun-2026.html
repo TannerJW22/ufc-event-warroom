@@ -9148,7 +9148,6 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       $$("#parlayForm .dialogActions").forEach(el=>{ el.hidden = false; });
     }
     function openParlayBuilder(id=null){
-      if(!id) return;
       const draft = refreshPortfolioDraftFromDom();
       const existing = id ? (parlayDraftFromRow(id) || draft.parlays.find(p=>p.id===id)) : null;
       const parlay = normalizeParlay(existing || {id:parlayId(),fightIds:[],book:"",notes:"",risk:0,market:"-",resultStatus:"active"});
