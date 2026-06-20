@@ -169,6 +169,34 @@ body.lanistra-ledger-control .mobileDetailPanel {
   gap: 8px;
   min-width: 0;
 }
+body.lanistra-ledger-control .mobileOverviewPanel {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+body.lanistra-ledger-control .mobileOverviewThesis {
+  min-height: 164px;
+  max-height: 164px;
+  overflow: auto;
+  padding: 10px 11px;
+}
+body.lanistra-ledger-control .mobileOverviewThesis .workspaceBoxHeader {
+  margin: 0 0 6px;
+  padding-right: 0;
+}
+body.lanistra-ledger-control .mobileOverviewThesis .workspaceBoxTitle {
+  font-size: 15px;
+}
+body.lanistra-ledger-control .mobileOverviewThesis .notes {
+  margin: 0;
+  white-space: pre-line;
+  line-height: 1.36;
+  font-size: 14px;
+}
+body.lanistra-ledger-control .mobileOverviewThesis .noneBox {
+  min-height: 0;
+  padding: 12px;
+}
 body.lanistra-ledger-control .panel { background: #141411; box-shadow: none; }
 body.lanistra-ledger-control .hero { border-left-width: 3px; background: linear-gradient(90deg, rgba(240,206,93,.12), rgba(27,27,26,.98) 36%); box-shadow: none; }
 body.lanistra-ledger-control .scheduleItem,
@@ -344,12 +372,18 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   body.lanistra-ledger-control .researchSubtabBar .portfolioToggleTab + .portfolioToggleTab{top:0;margin-left:0;flex:1 1 108px;min-width:0;border-radius:7px;padding:0 8px}
   body.lanistra-ledger-control .desktopFightDetail{display:none}
   body.lanistra-ledger-control .mobileActiveCard{display:grid}
+  body.lanistra-ledger-control .cards .cardTop.cardTopWithPhotos,
+  body.lanistra-ledger-control .cards .fighterPhotos,
   body.lanistra-ledger-control .mobileActiveCard .cardTop.cardTopWithPhotos,
-  body.lanistra-ledger-control .mobileActiveCard .fighterPhotos{height:64px}
-  body.lanistra-ledger-control .mobileActiveCard .fighterIdentity{height:64px}
+  body.lanistra-ledger-control .mobileActiveCard .fighterPhotos{height:38px}
+  body.lanistra-ledger-control .cards .fighterIdentity,
+  body.lanistra-ledger-control .mobileActiveCard .fighterIdentity{height:38px}
+  body.lanistra-ledger-control .cards .fighterIdentity::after,
   body.lanistra-ledger-control .mobileActiveCard .fighterIdentity::after{background:linear-gradient(180deg,rgba(0,0,0,0) 6%,rgba(0,0,0,.46) 25%,rgba(0,0,0,.9) 100%)}
-  body.lanistra-ledger-control .mobileActiveCard .fighterIdentityName{top:25%;bottom:0;left:5px;right:5px;display:flex;align-items:flex-end;justify-content:center;padding:0 4px 7px;font-size:18px;line-height:.93;white-space:normal;text-overflow:clip}
-  body.lanistra-ledger-control .mobileActiveCard .fighterPhotoFallback{font-size:22px}
+  body.lanistra-ledger-control .cards .fighterIdentityName,
+  body.lanistra-ledger-control .mobileActiveCard .fighterIdentityName{top:20%;bottom:0;left:4px;right:4px;display:flex;align-items:flex-end;justify-content:center;padding:0 3px 5px;font-size:13px;line-height:.94;white-space:normal;text-overflow:clip}
+  body.lanistra-ledger-control .cards .fighterPhotoFallback,
+  body.lanistra-ledger-control .mobileActiveCard .fighterPhotoFallback{font-size:16px}
   body.lanistra-ledger-control .mobileActiveCard .workspaceBox{padding:10px}
   body.lanistra-ledger-control .mobileActiveCard .readBody{padding:11px 12px}
   body.lanistra-ledger-control .scheduleToggle{cursor:pointer}
@@ -10262,11 +10296,17 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       {id:"keyQuotes",label:"Key Quote"}
     ];
     const mobileDetailTabValue = value => mobileDetailTabDefs.some(tab=>tab.id===value) ? value : "portfolio";
+    function mobileOverviewPanel(f){
+      const betTable = activeBetTable(f) || cardBetPlaceholder();
+      const tagHtml = chips(f);
+      const tags = `<div class="chips cardPills">${tagHtml}</div>`;
+      return `<div class="mobileOverviewPanel">${oddsGrid(f,true)}${betTable}<section class="workspaceBox mobileOverviewThesis"><div class="workspaceBoxHeader"><h3 class="workspaceBoxTitle">Game Plan Thesis</h3></div>${thesisBlock(f)}</section>${tags}</div>`;
+    }
     function mobileActiveCard(f){
       const activeTab = mobileDetailTabValue(state.detailTab);
       const tabs = `<div class="mobileDetailTabs" aria-label="Active fight sections">${mobileDetailTabDefs.map(tab=>`<button type="button" class="mobileDetailTab ${activeTab===tab.id?"active":""}" data-tab="${esc(tab.id)}" aria-pressed="${activeTab===tab.id}">${esc(tab.label)}</button>`).join("")}</div>`;
-      const panel = activeTab === "portfolio" ? cardPills(f) : analystTab(f, activeTab);
-      return `<article class="card selected mobileActiveCard"><div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div>${oddsGrid(f,true)}${tabs}<div class="mobileDetailPanel">${panel}</div></article>`;
+      const panel = activeTab === "portfolio" ? mobileOverviewPanel(f) : analystTab(f, activeTab);
+      return `<article class="card selected mobileActiveCard">${tabs}<div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div><div class="mobileDetailPanel">${panel}</div></article>`;
     }
     const youtubeVideoId = value => {
       const raw = String(value || "").trim();
