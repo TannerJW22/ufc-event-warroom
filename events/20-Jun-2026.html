@@ -223,6 +223,128 @@ body.lanistra-ledger-control .scheduleCompleteBtn svg {
   stroke-width: 3;
   transform: translateY(1px);
 }
+body.lanistra-ledger-control .scheduleIcon {
+  display: none;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--amber);
+}
+body.lanistra-ledger-control .scheduleIcon svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+body.lanistra-ledger-control .scheduleHeaderActive {
+  display: none;
+  min-width: 0;
+}
+body.lanistra-ledger-control .scheduleHeaderFight {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  grid-template-areas: "time name" "time meta";
+  column-gap: 8px;
+  row-gap: 1px;
+  align-items: center;
+  border: 1px solid rgba(240,206,93,.32);
+  border-radius: 7px;
+  background: rgba(240,206,93,.075);
+  padding: 5px 8px;
+}
+body.lanistra-ledger-control .scheduleHeaderTime {
+  grid-area: time;
+  color: var(--amber);
+  font-family: "Cascadia Mono",Consolas,monospace;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 900;
+  white-space: nowrap;
+}
+body.lanistra-ledger-control .scheduleHeaderName {
+  grid-area: name;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.05;
+  font-weight: 900;
+}
+body.lanistra-ledger-control .scheduleHeaderMeta {
+  grid-area: meta;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.05;
+  font-weight: 800;
+}
+body.lanistra-ledger-control .scheduleItem,
+body.lanistra-ledger-control .scheduleEditor {
+  min-height: 50px;
+  padding: 7px 38px 7px 9px;
+}
+body.lanistra-ledger-control .scheduleEditor {
+  padding-right: 9px;
+}
+body.lanistra-ledger-control .scheduleCardPick {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  grid-template-areas: "time name" "time meta";
+  column-gap: 9px;
+  row-gap: 1px;
+  align-items: center;
+  min-width: 0;
+}
+body.lanistra-ledger-control .scheduleItem .time {
+  grid-area: time;
+  font-size: 15px;
+  line-height: 1;
+}
+body.lanistra-ledger-control .scheduleItem .fight-name,
+body.lanistra-ledger-control .scheduleEditor .fight-name {
+  grid-area: name;
+  min-width: 0;
+  margin-top: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 1.12;
+}
+body.lanistra-ledger-control .scheduleMeta {
+  grid-area: meta;
+  min-width: 0;
+  margin-top: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11.5px;
+  line-height: 1.1;
+}
+body.lanistra-ledger-control .scheduleCompleteBtn {
+  right: 6px;
+  bottom: 6px;
+  width: 26px;
+  height: 26px;
+}
+body.lanistra-ledger-control .scheduleCompleteBtn svg {
+  width: 18px;
+  height: 18px;
+}
+body.lanistra-ledger-control .scheduleGrid {
+  gap: 6px;
+  margin-top: 8px;
+}
 body.lanistra-ledger-control .panel.schedule.collapsed .rail .scheduleItem:not(.active),
 body.lanistra-ledger-control .panel.schedule.collapsed .rail .scheduleEditor:not(.active) {
   display: none;
@@ -370,6 +492,14 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   body.lanistra-ledger-control .researchSubtabBar{flex-wrap:wrap;gap:5px;border-bottom:0;margin:0 0 8px;padding:0}
   body.lanistra-ledger-control .researchSubtabBar .portfolioToggleTab,
   body.lanistra-ledger-control .researchSubtabBar .portfolioToggleTab + .portfolioToggleTab{top:0;margin-left:0;flex:1 1 108px;min-width:0;border-radius:7px;padding:0 8px}
+  body.lanistra-ledger-control .scheduleHead{padding:8px 9px;gap:8px}
+  body.lanistra-ledger-control .scheduleToggle{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;align-items:center}
+  body.lanistra-ledger-control .scheduleToggle h2{display:grid;place-items:center;min-width:30px}
+  body.lanistra-ledger-control .scheduleIcon{display:inline-grid}
+  body.lanistra-ledger-control .scheduleLabel{display:none}
+  body.lanistra-ledger-control .panel.schedule.collapsed .scheduleHeaderActive{display:grid}
+  body.lanistra-ledger-control .panel.schedule.collapsed .countPill{display:none}
+  body.lanistra-ledger-control .panel.schedule.collapsed .rail{display:none}
   body.lanistra-ledger-control .desktopFightDetail{display:none}
   body.lanistra-ledger-control .mobileActiveCard{display:grid}
   body.lanistra-ledger-control .cards .cardTop.cardTopWithPhotos,
@@ -445,7 +575,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
       </div>
     </section>
     <section class="layout">
-      <aside class="panel schedule" id="schedulePanel"><div class="head scheduleHead"><button type="button" class="scheduleToggle" id="scheduleToggle"><h2>Fight Schedule <span class="chev" id="scheduleChev"></span></h2></button><span class="countPill" id="fightCountPill">0</span><div class="scheduleActions"><button type="button" class="editBtn scheduleEditBtn" id="scheduleEdit" title="Edit schedule" aria-label="Edit schedule">&#9998;</button></div></div><div class="rail" id="rail"></div></aside>
+      <aside class="panel schedule" id="schedulePanel"><div class="head scheduleHead"><button type="button" class="scheduleToggle" id="scheduleToggle" aria-label="Toggle fight schedule"><h2><span class="scheduleIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg></span><span class="scheduleLabel">Fight Schedule</span><span class="chev" id="scheduleChev"></span></h2><span class="scheduleHeaderActive" id="scheduleHeaderActive"></span></button><span class="countPill" id="fightCountPill">0</span><div class="scheduleActions"><button type="button" class="editBtn scheduleEditBtn" id="scheduleEdit" title="Edit schedule" aria-label="Edit schedule">&#9998;</button></div></div><div class="rail" id="rail"></div></aside>
       <section class="panel"><div id="detail"></div></section>
       <aside class="panel right"><div class="head"><h2>Card Grid</h2><span class="small">Click a card to inspect</span></div><div class="cards" id="cards"></div></aside>
     </section>
@@ -10300,7 +10430,7 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       const betTable = activeBetTable(f) || cardBetPlaceholder();
       const tagHtml = chips(f);
       const tags = `<div class="chips cardPills">${tagHtml}</div>`;
-      return `<div class="mobileOverviewPanel">${oddsGrid(f,true)}${betTable}<section class="workspaceBox mobileOverviewThesis"><div class="workspaceBoxHeader"><h3 class="workspaceBoxTitle">Game Plan Thesis</h3></div>${thesisBlock(f)}</section>${tags}</div>`;
+      return `<div class="mobileOverviewPanel">${oddsGrid(f,true)}${betTable}<section class="workspaceBox mobileOverviewThesis"><div class="workspaceBoxHeader"><h3 class="workspaceBoxTitle">Gameplan Thesis</h3></div>${thesisBlock(f)}</section>${tags}</div>`;
     }
     function mobileActiveCard(f){
       const activeTab = mobileDetailTabValue(state.detailTab);
@@ -10741,6 +10871,9 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
     const iconChevronsDown = () => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 6 5 5 5-5"/><path d="m7 13 5 5 5-5"/></svg>';
     const iconReset = () => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>';
     function scheduleMetaText(f){ return [f.time || "TBD", f.cardSection || "Prelim", f.weightClass || "Catchweight"].join(" | "); }
+    function scheduleHeaderActiveHtml(f){
+      return `<span class="scheduleHeaderFight"><span class="scheduleHeaderTime">${esc(f.time || "TBD")}</span><span class="scheduleHeaderName">${esc(f.fighterA)} vs ${esc(f.fighterB)}</span><span class="scheduleHeaderMeta">${esc(f.cardSection || "Prelim")} | ${esc(f.weightClass || "Catchweight")}</span></span>`;
+    }
     function scheduleItemHtml(f, selected){
       if(state.scheduleEditing){
         return `<div class="scheduleEditor ${f.id===selected.id?'active':''}"><button type="button" class="schedulePick" data-select="${f.id}"><div class="fight-name">${esc(f.fighterA)} vs ${esc(f.fighterB)}</div></button><div class="scheduleGrid"><label>Time<select data-schedule-field="time" data-fight="${f.id}">${selectOptions(timeChoices,f.time)}</select></label><label>Card Position<select data-schedule-field="cardSection" data-fight="${f.id}">${selectOptions(cardSectionChoices,f.cardSection)}</select></label><label>Weight Class<select data-schedule-field="weightClass" data-fight="${f.id}">${selectOptions(weightClassChoices,f.weightClass)}</select></label></div></div>`;
@@ -10765,6 +10898,7 @@ function cardBetPlaceholder(){ return '<div class="noneBox cardBetPlaceholder">N
       $("#scheduleEdit").setAttribute("aria-label", state.scheduleEditing ? "Done editing schedule" : "Edit schedule");
       $("#schedulePanel").classList.toggle("collapsed",state.scheduleCollapsed);
       $("#scheduleChev").textContent = "";
+      $("#scheduleHeaderActive").innerHTML = scheduleHeaderActiveHtml(selected);
       $("#rail").innerHTML = scheduleItems(items).map(f=>scheduleItemHtml(f, selected)).join("") || '<div class="empty">No fights match search.</div>';
       $("#detail").innerHTML = `<div class="detail"><div class="desktopFightDetail">${fightHero(selected)}${detailWorkspace(selected)}</div>${mobileActiveCard(selected)}</div>`;
       $("#cards").innerHTML = items.map(f=>`<article class="card ${f.id===selected.id?'selected':''}" data-select="${f.id}"><div class="cardTop cardTopWithPhotos">${fighterPhotosHtml(f)}</div>${oddsGrid(f,true)}${cardPills(f)}</article>`).join("") || '<div class="empty">No fights match search.</div>';
