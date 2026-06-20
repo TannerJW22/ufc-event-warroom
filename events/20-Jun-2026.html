@@ -473,7 +473,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 3,
-      "time": "5:20pm",
+      "time": "5:25pm",
       "cardSection": "Prelim",
       "weightClass": "Women's Bantamweight",
       "headline": "Luana Santos vs. Karol Rosa",
@@ -679,7 +679,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 2,
-      "time": "5:40pm",
+      "time": "5:50pm",
       "cardSection": "Prelim",
       "weightClass": "Welterweight",
       "headline": "Levan Chokheli vs. Leon Shahbazyan",
@@ -894,7 +894,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 4,
-      "time": "6:00pm",
+      "time": "6:15pm",
       "cardSection": "Prelim",
       "weightClass": "Featherweight",
       "headline": "Michael Aswell vs. Gaston Bolanos",
@@ -1109,7 +1109,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 5,
-      "time": "6:20pm",
+      "time": "6:40pm",
       "cardSection": "Prelim",
       "weightClass": "Flyweight",
       "headline": "Mitch Raposo vs. Allan Nascimento",
@@ -1315,7 +1315,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 6,
-      "time": "6:40pm",
+      "time": "7:05pm",
       "cardSection": "Prelim",
       "weightClass": "Women's Bantamweight",
       "headline": "Beatriz Mesquita vs. Melissa Mullins",
@@ -1530,7 +1530,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 8,
-      "time": "7:00pm",
+      "time": "7:30pm",
       "cardSection": "Prelim",
       "weightClass": "Flyweight",
       "headline": "Andre Lima vs. Kevin Borjas",
@@ -1951,7 +1951,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 7,
-      "time": "8:20pm",
+      "time": "8:30pm",
       "cardSection": "Main Card",
       "weightClass": "Featherweight",
       "headline": "Melsik Baghdasaryan vs. Murtazali Magomedov",
@@ -2157,7 +2157,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 9,
-      "time": "8:40pm",
+      "time": "9:00pm",
       "cardSection": "Main Card",
       "weightClass": "Featherweight",
       "headline": "Hyder Amil vs. Christian Rodriguez",
@@ -2363,7 +2363,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 11,
-      "time": "9:00pm",
+      "time": "9:30pm",
       "cardSection": "Co-Main Event",
       "weightClass": "Light Heavyweight",
       "headline": "Ion Cutelaba vs. Navajo Stirling",
@@ -2578,7 +2578,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     },
     {
       "id": 12,
-      "time": "9:20pm",
+      "time": "10:00pm",
       "cardSection": "Main Event",
       "weightClass": "Flyweight",
       "headline": "Manel Kape vs. Kyoji Horiguchi",
@@ -2978,7 +2978,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     const timeChoices = (() => {
       const out = ["TBD"];
       for(let hour=16; hour<=23; hour++){
-        for(const minute of [0,20,40]){
+        for(const minute of [0,5,10,15,20,25,30,35,40,45,50,55]){
           const displayHour = hour > 12 ? hour - 12 : hour;
           out.push(`${displayHour}:${String(minute).padStart(2,"0")}pm`);
         }
@@ -3009,35 +3009,35 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     "cardSection": "Prelim"
   },
   "2": {
-    "time": "5:40pm",
+    "time": "5:50pm",
     "cardSection": "Prelim"
   },
   "3": {
-    "time": "5:20pm",
+    "time": "5:25pm",
     "cardSection": "Prelim"
   },
   "4": {
-    "time": "6:00pm",
+    "time": "6:15pm",
     "cardSection": "Prelim"
   },
   "5": {
-    "time": "6:20pm",
-    "cardSection": "Prelim"
-  },
-  "6": {
     "time": "6:40pm",
     "cardSection": "Prelim"
   },
+  "6": {
+    "time": "7:05pm",
+    "cardSection": "Prelim"
+  },
   "7": {
-    "time": "8:20pm",
+    "time": "8:30pm",
     "cardSection": "Main Card"
   },
   "8": {
-    "time": "7:00pm",
+    "time": "7:30pm",
     "cardSection": "Prelim"
   },
   "9": {
-    "time": "8:40pm",
+    "time": "9:00pm",
     "cardSection": "Main Card"
   },
   "10": {
@@ -3045,11 +3045,11 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
     "cardSection": "Main Card"
   },
   "11": {
-    "time": "9:00pm",
+    "time": "9:30pm",
     "cardSection": "Co-Main Event"
   },
   "12": {
-    "time": "9:20pm",
+    "time": "10:00pm",
     "cardSection": "Main Event"
   }
 };
@@ -3274,7 +3274,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 3,
-    "time": "5:20pm",
+    "time": "5:25pm",
     "cardSection": "Prelim",
     "weightClass": "Women's Bantamweight",
     "headline": "Luana Santos vs. Karol Rosa",
@@ -3480,7 +3480,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 2,
-    "time": "5:40pm",
+    "time": "5:50pm",
     "cardSection": "Prelim",
     "weightClass": "Welterweight",
     "headline": "Levan Chokheli vs. Leon Shahbazyan",
@@ -3695,7 +3695,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 4,
-    "time": "6:00pm",
+    "time": "6:15pm",
     "cardSection": "Prelim",
     "weightClass": "Featherweight",
     "headline": "Michael Aswell vs. Gaston Bolanos",
@@ -3910,7 +3910,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 5,
-    "time": "6:20pm",
+    "time": "6:40pm",
     "cardSection": "Prelim",
     "weightClass": "Flyweight",
     "headline": "Mitch Raposo vs. Allan Nascimento",
@@ -4116,7 +4116,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 6,
-    "time": "6:40pm",
+    "time": "7:05pm",
     "cardSection": "Prelim",
     "weightClass": "Women's Bantamweight",
     "headline": "Beatriz Mesquita vs. Melissa Mullins",
@@ -4331,7 +4331,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 8,
-    "time": "7:00pm",
+    "time": "7:30pm",
     "cardSection": "Prelim",
     "weightClass": "Flyweight",
     "headline": "Andre Lima vs. Kevin Borjas",
@@ -4752,7 +4752,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 7,
-    "time": "8:20pm",
+    "time": "8:30pm",
     "cardSection": "Main Card",
     "weightClass": "Featherweight",
     "headline": "Melsik Baghdasaryan vs. Murtazali Magomedov",
@@ -4958,7 +4958,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 9,
-    "time": "8:40pm",
+    "time": "9:00pm",
     "cardSection": "Main Card",
     "weightClass": "Featherweight",
     "headline": "Hyder Amil vs. Christian Rodriguez",
@@ -5164,7 +5164,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 11,
-    "time": "9:00pm",
+    "time": "9:30pm",
     "cardSection": "Co-Main Event",
     "weightClass": "Light Heavyweight",
     "headline": "Ion Cutelaba vs. Navajo Stirling",
@@ -5379,7 +5379,7 @@ body.lanistra-ledger-control .heroLinkedOdds .oddsHeadStat {
   },
   {
     "id": 12,
-    "time": "9:20pm",
+    "time": "10:00pm",
     "cardSection": "Main Event",
     "weightClass": "Flyweight",
     "headline": "Manel Kape vs. Kyoji Horiguchi",
