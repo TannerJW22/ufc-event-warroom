@@ -308,25 +308,27 @@ body.lanistra-ledger-control .scheduleHeaderMeta {
 }
 body.lanistra-ledger-control .scheduleItem,
 body.lanistra-ledger-control .scheduleEditor {
-  min-height: 50px;
-  padding: 7px 38px 7px 9px;
+  min-height: 58px;
+  padding: 7px 33px 7px 8px;
 }
 body.lanistra-ledger-control .scheduleEditor {
   padding-right: 9px;
 }
 body.lanistra-ledger-control .scheduleCardPick {
   display: grid;
-  grid-template-columns: auto minmax(0,1fr);
+  grid-template-columns: minmax(52px,max-content) minmax(0,1fr);
   grid-template-areas: "time name" "time meta";
-  column-gap: 9px;
+  column-gap: 7px;
   row-gap: 1px;
   align-items: center;
   min-width: 0;
 }
 body.lanistra-ledger-control .scheduleItem .time {
   grid-area: time;
-  font-size: 15px;
+  align-self: center;
+  font-size: 14px;
   line-height: 1;
+  letter-spacing: 0;
 }
 body.lanistra-ledger-control .scheduleItem .fight-name,
 body.lanistra-ledger-control .scheduleEditor .fight-name {
@@ -334,10 +336,11 @@ body.lanistra-ledger-control .scheduleEditor .fight-name {
   min-width: 0;
   margin-top: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 15px;
-  line-height: 1.12;
+  display: block;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 14.25px;
+  line-height: 1.08;
 }
 body.lanistra-ledger-control .scheduleMeta {
   grid-area: meta;
@@ -350,14 +353,15 @@ body.lanistra-ledger-control .scheduleMeta {
   line-height: 1.1;
 }
 body.lanistra-ledger-control .scheduleCompleteBtn {
-  right: 6px;
-  bottom: 6px;
-  width: 26px;
-  height: 26px;
+  right: 5px;
+  bottom: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translateY(50%);
 }
 body.lanistra-ledger-control .scheduleCompleteBtn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 body.lanistra-ledger-control .scheduleGrid {
   gap: 6px;
